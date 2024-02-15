@@ -1,10 +1,19 @@
-name: Build Installer with Inno Setup
+name: Build and Release
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
 
 jobs:
   build:
     runs-on: windows-latest
+    permissions:
+      contents: write
+      packages: write
+      actions: write
+      deployments: write
 
     steps:
     - uses: actions/checkout@v2
@@ -38,14 +47,19 @@ jobs:
         ISCC_Path: C:\Program Files (x86)\Inno Setup 6
       shell: cmd
 
+  release:
+    needs: build
+    runs-on: windows-latest
+    permissions:
+      contents: write  # This grants write access to the repository code, enabling the release creation
+    steps:
     - name: Create Release
-      id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
+        tag_name: v${{ github.run_number }}
+        release_name: Release ${{ github.run_number }}
         draft: false
         prerelease: false
 
