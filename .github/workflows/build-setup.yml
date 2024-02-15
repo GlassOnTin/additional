@@ -47,13 +47,24 @@ jobs:
           ISCC_Path: C:\Program Files (x86)\Inno Setup 6
         shell: cmd
 
+      - name: Upload build output as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-output
+          path: ./build_output/
+
+
   release:
     needs: build
     runs-on: windows-latest
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v2
+      - name: Download build output
+        uses: actions/download-artifact@v2
+        with:
+          name: build-output
+          path: build_output
 
       - name: Create Release
         id: create_release
