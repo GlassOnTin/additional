@@ -21,15 +21,12 @@ jobs:
       run: |
         dotnet publish Additional/Additional.csproj --configuration Release --output ./build_output --runtime win-x64 --self-contained true
 
+    - name: List output directory contents
+      run: dir ./build_output
+      shell: cmd
+
     - name: Install Inno Setup
       run: choco install innosetup
-
-    - name: Print working directory
-      run: pwd
-  
-    - name: List files
-      run: dir
-      shell: cmd
 
     - name: Compile Inno Setup Script
       run: ISCC.exe ./Additional/AdditionalPackaging.iss

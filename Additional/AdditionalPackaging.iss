@@ -34,14 +34,15 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "{#SourcePath}\bin\Release\net6.0-windows\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourcePath}\bin\Release\net6.0-windows\Additional.deps.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourcePath}\bin\Release\net6.0-windows\Additional.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourcePath}\bin\Release\net6.0-windows\Additional.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourcePath}\bin\Release\net6.0-windows\Additional.runtimeconfig.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourcePath}\bin\Release\net6.0-windows\AdditionalEngine.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourcePath}\bin\Release\net6.0-windows\AdditionalEngine.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourcePath}\bin\Release\net6.0-windows\logo.png"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\build_output\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\build_output\Additional.deps.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\build_output\Additional.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\build_output\Additional.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\build_output\Additional.runtimeconfig.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\build_output\AdditionalEngine.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\build_output\AdditionalEngine.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\build_output\logo.png"; DestDir: "{app}"; Flags: ignoreversion
+
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
