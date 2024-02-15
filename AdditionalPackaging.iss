@@ -34,7 +34,7 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "{#SourcePath}\build_output\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\build_output\Additional.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SourcePath}\build_output\Additional.deps.json"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SourcePath}\build_output\Additional.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SourcePath}\build_output\Additional.pdb"; DestDir: "{app}"; Flags: ignoreversion
