@@ -24,7 +24,7 @@ DisableProgramGroupPage=yes
 PrivilegesRequired=lowest
 OutputDir=.
 OutputBaseFilename=additional_setup
-Compression=lzma
+Compression=zip
 SolidCompression=yes
 WizardStyle=modern
 
