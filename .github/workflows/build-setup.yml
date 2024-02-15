@@ -22,7 +22,11 @@ jobs:
         dotnet publish Additional/Additional.csproj --configuration Release --output ./build_output --runtime win-x64 --self-contained true
 
     - name: List output directory contents
-      run: dir ./build_output
+      run: |
+        pwd
+        dir
+        cd build_output
+        dir
       shell: cmd
 
     - name: Install Inno Setup
