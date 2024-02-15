@@ -16,36 +16,36 @@ jobs:
       deployments: write
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '6.0' # Adjust to match your project's target framework
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.0' # Adjust to match your project's target framework
 
-    - name: Build C# Project
-      run: dotnet build --configuration Release --output ./build_output Additional.sln
+      - name: Build C# Project
+        run: dotnet build --configuration Release --output ./build_output Additional.sln
 
-    - name: Publish WPF Application
-      run: |
-        dotnet publish Additional/Additional.csproj --configuration Release --output ./build_output --runtime win-x64 --self-contained true
+      - name: Publish WPF Application
+        run: |
+          dotnet publish Additional/Additional.csproj --configuration Release --output ./build_output --runtime win-x64 --self-contained true
 
-    - name: List output directory contents
-      run: |
-        pwd
-        dir
-        cd build_output
-        dir
-      shell: cmd
+      - name: List output directory contents
+        run: |
+          pwd
+          dir
+          cd build_output
+          dir
+        shell: cmd
 
-    - name: Install Inno Setup
-      run: choco install innosetup
+      - name: Install Inno Setup
+        run: choco install innosetup
 
-    - name: Compile Inno Setup Script
-      run: ISCC.exe ./AdditionalPackaging.iss
-      env:
-        ISCC_Path: C:\Program Files (x86)\Inno Setup 6
-      shell: cmd
+      - name: Compile Inno Setup Script
+        run: ISCC.exe ./AdditionalPackaging.iss
+        env:
+          ISCC_Path: C:\Program Files (x86)\Inno Setup 6
+        shell: cmd
 
   release:
     needs: build
@@ -53,23 +53,31 @@ jobs:
     permissions:
       contents: write  # This grants write access to the repository code, enabling the release creation
     steps:
-    - name: Create Release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: v${{ github.run_number }}
-        release_name: Release ${{ github.run_number }}
-        draft: false
-        prerelease: false
+      - uses: actions/checkout@v2  # Ensure the workspace is available for release
 
-    - name: Upload Installer to Release
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./build_output/additional_setup.exe
-        asset_name: additional_setup.exe
-        asset_content_type: application/octet-stream
+      - name: Download Artifact  # If needed, download artifacts produced by the build job
+        uses: actions/download-artifact@v2
+        with:
+          name: your-artifact-name
+          path: build_output
 
+      - name: Create Release
+        id: create_release  # Assign an ID here to reference this step's outputs in subsequent steps
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ github.run_number }}
+          release_name: Release ${{ github.run_number }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Installer to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}  # Correctly reference the output from the previous step
+          asset_path: ./build_output/additional_setup.exe
+          asset_name: additional_setup.exe
+          asset_content_type: application/octet-stream
