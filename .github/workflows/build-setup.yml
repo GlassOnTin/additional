@@ -42,7 +42,7 @@ jobs:
         run: choco install innosetup
 
       - name: Compile Inno Setup Script
-        run: ISCC.exe Additional/AdditionalPackaging.iss
+        run: ISCC.exe build_output/AdditionalPackaging.iss
         env:
           ISCC_Path: C:\Program Files (x86)\Inno Setup 6
         shell: cmd
