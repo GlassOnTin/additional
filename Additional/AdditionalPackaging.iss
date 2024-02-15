@@ -34,14 +34,14 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\sogiwz\source\repos\GlassOnTin\additional\Additional\bin\x64\Release\net6.0-windows\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\sogiwz\source\repos\GlassOnTin\additional\Additional\bin\x64\Release\net6.0-windows\Additional.deps.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\sogiwz\source\repos\GlassOnTin\additional\Additional\bin\x64\Release\net6.0-windows\Additional.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\sogiwz\source\repos\GlassOnTin\additional\Additional\bin\x64\Release\net6.0-windows\Additional.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\sogiwz\source\repos\GlassOnTin\additional\Additional\bin\x64\Release\net6.0-windows\Additional.runtimeconfig.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\sogiwz\source\repos\GlassOnTin\additional\Additional\bin\x64\Release\net6.0-windows\AdditionalEngine.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\sogiwz\source\repos\GlassOnTin\additional\Additional\bin\x64\Release\net6.0-windows\AdditionalEngine.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\sogiwz\source\repos\GlassOnTin\additional\Additional\bin\x64\Release\net6.0-windows\logo.png"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\bin\x64\Release\net6.0-windows\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\bin\x64\Release\net6.0-windows\Additional.deps.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\bin\x64\Release\net6.0-windows\Additional.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\bin\x64\Release\net6.0-windows\Additional.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\bin\x64\Release\net6.0-windows\Additional.runtimeconfig.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\bin\x64\Release\net6.0-windows\AdditionalEngine.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\bin\x64\Release\net6.0-windows\AdditionalEngine.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\bin\x64\Release\net6.0-windows\logo.png"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

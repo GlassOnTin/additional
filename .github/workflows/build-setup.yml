@@ -1,0 +1,19 @@
+name: Build Installer with Inno Setup
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Setup Inno Setup
+      uses: crazy-max/ghaction-inno-setup@v3
+      with:
+        version: 'latest'
+
+    - name: Compile Inno Setup Script
+      run: ISCC.exe ./AdditionalPackaging.iss
