@@ -35,14 +35,14 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "{#SourcePath}\build_output\Additional.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourcePath}\build_output\Additional.deps.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourcePath}\build_output\Additional.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourcePath}\build_output\Additional.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourcePath}\build_output\Additional.runtimeconfig.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourcePath}\build_output\AdditionalEngine.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourcePath}\build_output\AdditionalEngine.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourcePath}\build_output\logo.png"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\Additional.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\Additional.deps.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\Additional.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\Additional.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\Additional.runtimeconfig.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\AdditionalEngine.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\AdditionalEngine.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\logo.png"; DestDir: "{app}"; Flags: ignoreversion
 
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
