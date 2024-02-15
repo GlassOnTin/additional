@@ -4,7 +4,7 @@ using System.Windows.Data;
 
 namespace Additional
 {
-    public class CanConvertToStatusMessageConverter : IValueConverter
+    public class CanCalculateToStatusMessageConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
