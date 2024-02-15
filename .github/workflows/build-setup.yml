@@ -15,8 +15,7 @@ jobs:
         dotnet-version: '6.0' # Adjust to match your project's target framework
 
     - name: Build C# Project
-      run: dotnet build --configuration Release --output ./build_output YourSolution.sln
-      # Replace "YourSolution.sln" with the path to your solution or project file.
+      run: dotnet build --configuration Release --output ./build_output Additional.sln
 
     - name: Install Inno Setup
       run: choco install innosetup
@@ -25,5 +24,4 @@ jobs:
       run: ISCC.exe ./AdditionalPackaging.iss
       env:
         ISCC_Path: C:\Program Files (x86)\Inno Setup 6
-      # Add the Inno Setup compiler to the PATH
       shell: cmd
