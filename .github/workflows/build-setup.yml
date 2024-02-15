@@ -20,8 +20,15 @@ jobs:
     - name: Install Inno Setup
       run: choco install innosetup
 
+    - name: Print working directory
+      run: pwd
+  
+    - name: List files
+      run: dir
+      shell: cmd
+
     - name: Compile Inno Setup Script
-      run: ISCC.exe ./AdditionalPackaging.iss
+      run: ISCC.exe ./Additional/AdditionalPackaging.iss
       env:
         ISCC_Path: C:\Program Files (x86)\Inno Setup 6
       shell: cmd
