@@ -47,11 +47,11 @@ jobs:
           ISCC_Path: C:\Program Files (x86)\Inno Setup 6
         shell: cmd
 
-      - name: Upload build output as artifact
+      - name: Upload additional_setup.exe as artifact
         uses: actions/upload-artifact@v2
         with:
-          name: build-output
-          path: ./build_output/
+          name: installer-artifact
+          path: ../Output/additional_setup.exe
 
 
   release:
@@ -63,8 +63,8 @@ jobs:
       - name: Download build output
         uses: actions/download-artifact@v2
         with:
-          name: build-output
-          path: build_output
+          name: installer-artifact
+          path: .
 
       - name: Create Release
         id: create_release
@@ -83,6 +83,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./build_output/additional_setup.exe
+          asset_path: ./additional_setup.exe
           asset_name: additional_setup.exe
           asset_content_type: application/octet-stream
