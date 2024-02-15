@@ -51,18 +51,12 @@ jobs:
     needs: build
     runs-on: windows-latest
     permissions:
-      contents: write  # This grants write access to the repository code, enabling the release creation
+      contents: write
     steps:
-      - uses: actions/checkout@v2  # Ensure the workspace is available for release
-
-      - name: Download Artifact  # If needed, download artifacts produced by the build job
-        uses: actions/download-artifact@v2
-        with:
-          name: your-artifact-name
-          path: build_output
+      - uses: actions/checkout@v2
 
       - name: Create Release
-        id: create_release  # Assign an ID here to reference this step's outputs in subsequent steps
+        id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -77,7 +71,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}  # Correctly reference the output from the previous step
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./build_output/additional_setup.exe
           asset_name: additional_setup.exe
           asset_content_type: application/octet-stream
