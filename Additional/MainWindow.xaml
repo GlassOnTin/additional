@@ -26,12 +26,12 @@
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Margin" Value="5"/>
         </Style>
-        <Additional:CanConvertToStatusMessageConverter x:Key="CanConvertToStatusMessageConverter"/>
+        <Additional:CanCalculateToStatusMessageConverter x:Key="CanCalculateToStatusMessageConverter"/>
     </Window.Resources>
     <DockPanel LastChildFill="True">
         <Image Source="logo.png" DockPanel.Dock="Top" Height="67" Margin="10" Width="330"/>
         <StatusBar DockPanel.Dock="Bottom" Background="LightGray" Height="30">
-            <StatusBarItem Content="{Binding CanCalculate, Converter={StaticResource CanConvertToStatusMessageConverter}}"/>
+            <StatusBarItem Content="{Binding CanCalculate, Converter={StaticResource CanCalculateToStatusMessageConverter}}"/>
         </StatusBar>
         <Grid DockPanel.Dock="Top">
             <Grid.RowDefinitions>
