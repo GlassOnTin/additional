@@ -17,6 +17,10 @@ jobs:
     - name: Build C# Project
       run: dotnet build --configuration Release --output ./build_output Additional.sln
 
+    - name: Publish WPF Application
+      run: |
+        dotnet publish Additional/Additional.csproj --configuration Release --output ./build_output --runtime win-x64 --self-contained true
+
     - name: Install Inno Setup
       run: choco install innosetup
 
