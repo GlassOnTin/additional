@@ -22,6 +22,7 @@ DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
+OutputDir=.
 OutputBaseFilename=additional_setup
 Compression=lzma
 SolidCompression=yes
@@ -34,14 +35,15 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\sogiwz\source\repos\GlassOnTin\additional\Additional\bin\x64\Release\net6.0-windows\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\sogiwz\source\repos\GlassOnTin\additional\Additional\bin\x64\Release\net6.0-windows\Additional.deps.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\sogiwz\source\repos\GlassOnTin\additional\Additional\bin\x64\Release\net6.0-windows\Additional.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\sogiwz\source\repos\GlassOnTin\additional\Additional\bin\x64\Release\net6.0-windows\Additional.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\sogiwz\source\repos\GlassOnTin\additional\Additional\bin\x64\Release\net6.0-windows\Additional.runtimeconfig.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\sogiwz\source\repos\GlassOnTin\additional\Additional\bin\x64\Release\net6.0-windows\AdditionalEngine.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\sogiwz\source\repos\GlassOnTin\additional\Additional\bin\x64\Release\net6.0-windows\AdditionalEngine.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\sogiwz\source\repos\GlassOnTin\additional\Additional\bin\x64\Release\net6.0-windows\logo.png"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\Additional.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\Additional.deps.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\Additional.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\Additional.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\Additional.runtimeconfig.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\AdditionalEngine.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\AdditionalEngine.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\logo.png"; DestDir: "{app}"; Flags: ignoreversion
+
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
