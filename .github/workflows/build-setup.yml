@@ -51,7 +51,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: installer-artifact
-          path: Additional/additional_setup.exe
+          path: build_output/additional_setup.exe
 
 
   release:
