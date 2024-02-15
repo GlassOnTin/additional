@@ -42,7 +42,7 @@ jobs:
         run: choco install innosetup
 
       - name: Compile Inno Setup Script
-        run: ISCC.exe ./AdditionalPackaging.iss
+        run: ISCC.exe Additional/AdditionalPackaging.iss
         env:
           ISCC_Path: C:\Program Files (x86)\Inno Setup 6
         shell: cmd
@@ -51,7 +51,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: installer-artifact
-          path: ../Output/additional_setup.exe
+          path: Additional/additional_setup.exe
 
 
   release:
@@ -83,6 +83,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./additional_setup.exe
+          asset_path: additional_setup.exe
           asset_name: additional_setup.exe
           asset_content_type: application/octet-stream
