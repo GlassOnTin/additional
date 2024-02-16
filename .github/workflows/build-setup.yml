@@ -29,19 +29,19 @@ jobs:
       - name: Build C# Project
         run: dotnet build --configuration Release Additional.sln
 
-      - name: Publish WPF Application with ClickOnce
-        run: dotnet publish Additional/Additional.csproj --configuration Release /p:PublishUrl="publish\\" /p:InstallUrl="https://github.com/GlassOnTin/additional/releases" /p:PublisherName="Ian Ross Williams" /p:ApplicationVersion="1.0.0.41" /p:PublishSingleFile=true /p:RuntimeIdentifier=win-x64
+      - name: Publish WPF Application using ClickOnce
+        run: msbuild Additional/Additional.csproj /target:Publish /p:Configuration=Release /p:PublishProfile=Properties\PublishProfiles\ClickOnceProfile.pubxml /p:PublishDir="${{github.workspace}}\publish\\"
         shell: pwsh
 
       - name: Zip the ClickOnce publish output
-        run: Compress-Archive -Path Additional/bin/Release/net6.0-windows/win-x64/publish/* -DestinationPath ClickOnce.zip
+        run: Compress-Archive -Path Additional/bin/Release/net6.0-windows/win-x64/publish/* -DestinationPath Additional.zip
         shell: pwsh
 
       - name: Upload ClickOnce.zip as artifact
         uses: actions/upload-artifact@v2
         with:
-          name: clickonce-artifact
-          path: ClickOnce.zip
+          name: additional-zip-artifact
+          path: Additional.zip
 
   release:
     needs: build
@@ -72,6 +72,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ClickOnce.zip
-          asset_name: ClickOnce.zip
+          asset_path: Additional.zip
+          asset_name: Additional.zip
           asset_content_type: application/zip
