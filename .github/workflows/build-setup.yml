@@ -55,7 +55,7 @@ jobs:
       - name: Download ClickOnce artifact
         uses: actions/download-artifact@v2
         with:
-          name: clickonce-artifact
+          name: additional-zip-artifact
           path: .
 
       - name: Create Release
