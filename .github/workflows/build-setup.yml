@@ -21,38 +21,30 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '6.0' # Adjust to match your project's target framework
+          dotnet-version: '6.0'
+
+      - name: Restore NuGet packages
+        run: dotnet restore Additional.sln
 
       - name: Build C# Project
-        run: dotnet build --configuration Release --output ./build_output Additional.sln
+        run: dotnet build --configuration Release Additional.sln
 
-      - name: Publish WPF Application
+      - name: Publish WPF Application using ClickOnce
         run: |
-          dotnet publish Additional/Additional.csproj --configuration Release --output ./build_output --runtime win-x64 --self-contained true
+          $vsPath = & "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.Component.MSBuild -property installationPath
+          $msbuildPath = "${vsPath}\MSBuild\Current\Bin\MSBuild.exe"
+          & $msbuildPath Additional/Additional.csproj /target:Publish /p:Configuration=Release /p:PublishProfile=Properties\PublishProfiles\ClickOnceProfile.pubxml /p:PublishDir="${{env.GITHUB_WORKSPACE}}\publish\\"
+        shell: pwsh
 
-      - name: List output directory contents
-        run: |
-          pwd
-          dir
-          cd build_output
-          dir
-        shell: cmd
+      - name: Zip the ClickOnce publish output
+        run: Compress-Archive -Path ${{env.GITHUB_WORKSPACE}}\publish\* -DestinationPath Additional.zip
+        shell: pwsh
 
-      - name: Install Inno Setup
-        run: choco install innosetup
-
-      - name: Compile Inno Setup Script
-        run: ISCC.exe build_output/AdditionalPackaging.iss
-        env:
-          ISCC_Path: C:\Program Files (x86)\Inno Setup 6
-        shell: cmd
-
-      - name: Upload additional_setup.exe as artifact
+      - name: Upload ClickOnce.zip as artifact
         uses: actions/upload-artifact@v2
         with:
-          name: installer-artifact
-          path: build_output/additional_setup.exe
-
+          name: additional-zip-artifact
+          path: Additional.zip
 
   release:
     needs: build
@@ -60,10 +52,10 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Download build output
+      - name: Download ClickOnce artifact
         uses: actions/download-artifact@v2
         with:
-          name: installer-artifact
+          name: additional-zip-artifact
           path: .
 
       - name: Create Release
@@ -77,16 +69,12 @@ jobs:
           draft: false
           prerelease: false
 
-      - name: Zip the installer
-        run: Compress-Archive -Path additional_setup.exe -DestinationPath additional_setup.zip
-        shell: powershell
-
-      - name: Upload Installer to Release
+      - name: Upload ClickOnce Installer to Release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: additional_setup.zip
-          asset_name: additional_setup.zip
-          asset_content_type: application/octet-stream
+          asset_path: Additional.zip
+          asset_name: Additional.zip
+          asset_content_type: application/zip
