@@ -30,7 +30,7 @@ jobs:
         run: dotnet build --configuration Release Additional.sln
 
       - name: Publish WPF Application with ClickOnce
-        run: dotnet publish Additional/Additional.csproj --configuration Release /p:PublishUrl="publish\\" /p:InstallUrl="https://yourdomain.com/install/" /p:PublisherName="Ian Ross Williams" /p:ApplicationVersion="1.0.0.${{ github.run_number }}" /p:PublishSingleFile=true
+        run: dotnet publish Additional/Additional.csproj --configuration Release /p:PublishUrl="publish\\" /p:InstallUrl="https://github.com/GlassOnTin/additional/releases" /p:PublisherName="Ian Ross Williams" /p:ApplicationVersion="1.0.0.41" /p:PublishSingleFile=true /p:RuntimeIdentifier=win-x64
         shell: pwsh
 
       - name: Zip the ClickOnce publish output
