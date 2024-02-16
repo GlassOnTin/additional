@@ -30,7 +30,10 @@ jobs:
         run: dotnet build --configuration Release Additional.sln
 
       - name: Publish WPF Application using ClickOnce
-        run: msbuild Additional/Additional.csproj /target:Publish /p:Configuration=Release /p:PublishProfile=Properties\PublishProfiles\ClickOnceProfile.pubxml /p:PublishDir="${{github.workspace}}\publish\\"
+        run: |
+          $vsPath = & "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.Component.MSBuild -property installationPath
+          $msbuildPath = "${vsPath}\MSBuild\Current\Bin\MSBuild.exe"
+          & $msbuildPath Additional/Additional.csproj /target:Publish /p:Configuration=Release /p:PublishProfile=Properties\PublishProfiles\ClickOnceProfile.pubxml /p:PublishDir="${{env.GITHUB_WORKSPACE}}\publish\\"
         shell: pwsh
 
       - name: Zip the ClickOnce publish output
