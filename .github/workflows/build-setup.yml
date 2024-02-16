@@ -34,7 +34,7 @@ jobs:
         shell: pwsh
 
       - name: Zip the ClickOnce publish output
-        run: Compress-Archive -Path publish/* -DestinationPath ClickOnce.zip
+        run: Compress-Archive -Path Additional/bin/Release/net6.0-windows/win-x64/publish/* -DestinationPath ClickOnce.zip
         shell: pwsh
 
       - name: Upload ClickOnce.zip as artifact
